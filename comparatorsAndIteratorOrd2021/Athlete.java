@@ -1,4 +1,4 @@
-package ComparatorsAndIteratorOrd2021;
+package comparatorsAndIteratorOrd2021;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +26,5 @@ public class Athlete {
 	public String getName() {
 		return name;
 	}
-
+	
 }

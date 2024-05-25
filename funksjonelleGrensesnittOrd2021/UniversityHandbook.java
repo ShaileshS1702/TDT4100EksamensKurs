@@ -1,4 +1,4 @@
-package FunksjonelleGrensesnittOrd2021;
+package funksjonelleGrensesnittOrd2021;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class UniversityHandbook {
 
 	private final List<Course> courses = new ArrayList<>();
+	private static final String FILE_PATH = "funksjonelleGrensesnittOrd2021/courses.txt";
 
 	/**
 	 * Reads all the courses from a given input stream. The courses are on this
@@ -32,6 +33,7 @@ public class UniversityHandbook {
 	 * @param stream InputStream containing the course data
 	 */
 	public void readFromInputStream(InputStream stream) {
+		
 		try (Scanner scanner = new Scanner(stream)) {
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();

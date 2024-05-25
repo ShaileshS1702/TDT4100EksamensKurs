@@ -1,4 +1,4 @@
-package FunksjonelleGrensesnittOrd2021;
+package funksjonelleGrensesnittOrd2021;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -52,5 +52,7 @@ public class Course {
 	public String toString() {
 		return this.courseName;
 	}
+
+	
 
 }

@@ -1,4 +1,4 @@
-package ComparatorsAndIteratorOrd2021;
+package comparatorsAndIteratorOrd2021;
 
 import java.util.Arrays;
 import java.util.Collections;

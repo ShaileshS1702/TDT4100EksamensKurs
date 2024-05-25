@@ -1,4 +1,4 @@
-package FunksjonelleGrensesnittOrd2021;
+package funksjonelleGrensesnittOrd2021;
 
 import java.util.ArrayList;
 import java.util.Arrays;
