@@ -40,7 +40,7 @@ public class example {
 
     public static void main(String[] args) {
         example ex = new example();
-        ex.readFile("filbehandling/test.txt");
-        ex.writeFile("filbehandling/test.txt");
+        ex.readFile("lectureExamples/inputHandling/test.txt");
+        ex.writeFile("lectureExamples/inputHandling/test.txt");
     }
 }

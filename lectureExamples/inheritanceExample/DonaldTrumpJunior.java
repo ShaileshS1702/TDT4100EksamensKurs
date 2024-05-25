@@ -1,6 +1,6 @@
-package inheritance;
+package inheritanceExample;
 
-public class DonaldTrumpJunior extends DonaldTrumpSenior{
+public class DonaldTrumpJunior extends DonaldTrumpSenior implements President{
     
     public DonaldTrumpJunior() {
         // Donald Trump junior inherits from his father but his name has a different suffix
@@ -17,9 +17,29 @@ public class DonaldTrumpJunior extends DonaldTrumpSenior{
     }
 
 
+    // Interface methods that we know all presidents must have
+    @Override
+    public void giveSpeech() {
+        // TODO Auto-generated method stub
+        System.out.println("Make America great again");
+    }
+
+    @Override
+    public void signExecutiveOrder() {
+        System.out.println("Pardon myself for january 6th insurrection");
+    }
+
+    @Override
+    public void wageWar() {
+        // TODO Auto-generated method stub
+        System.out.println("Drone Strike on Iran");
+    }
+
+
     public static void main(String[] args) {
         DonaldTrumpJunior donald = new DonaldTrumpJunior();
         System.out.println(donald.getName());
         donald.warCrimes();
     }
+
 }

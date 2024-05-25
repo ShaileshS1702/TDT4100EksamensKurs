@@ -1,4 +1,4 @@
-package inheritance;
+package inheritanceExample;
 
 // Donald Trump senior gives all protected attributes to his son through inheritance
 // If Donald Trump senior dies he becomes an abstract class
