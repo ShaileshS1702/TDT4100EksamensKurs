@@ -13,7 +13,7 @@ public class DonaldTrumpJunior extends DonaldTrumpSenior implements President{
     // subclass
     @Override
     public void warCrimes(){
-        System.out.println("I am a war criminal");
+        System.out.println("I may or may not be a war criminal");
     }
 
 
@@ -40,6 +40,17 @@ public class DonaldTrumpJunior extends DonaldTrumpSenior implements President{
         DonaldTrumpJunior donald = new DonaldTrumpJunior();
         System.out.println(donald.getName());
         donald.warCrimes();
+    }
+
+    @Override
+    public void impeachment() {
+        System.out.println("ooopsie");
+    }
+
+    @Override
+    public void keepClassifiedDocumentsBeyondTerm() {
+        // TODO Auto-generated method stub
+        System.out.println("Teehee oopsie");
     }
 
 }
