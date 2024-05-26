@@ -18,7 +18,8 @@ public class UniversityHandbookUtils {
 	 */
 	public static Collection<Course> getCoursesWithPredicate(Collection<Course> courses, Predicate<Course> p) {
 		// TODO
-		return new ArrayList<>();
+		
+		return new ArrayList<>(courses.stream().filter(p).toList(););
 	}
 
 	/**
@@ -29,7 +30,7 @@ public class UniversityHandbookUtils {
 	 */
 	public static Collection<Course> getNonPrequisiteCourses(Collection<Course> courses) {
 		// TODO
-		return new ArrayList<>();
+		return new ArrayList<>(courses.stream().filter(e -> e.getPrerequisites().size() == 0).toList());
 
 	}
 	
@@ -49,7 +50,8 @@ public class UniversityHandbookUtils {
 	 */
 	public static boolean containsImpossibleCourse(Collection<Course> courses) {
 		// TODO
-		return false;
+		//return alt2: courses.stream().anyMatch(c -> c.getPrerequisites().stream().anyMatch(d -> d==c));
+		return courses.stream().anyMatch(c -> c.getPrerequisites().contains(c));
 	}
 	
 	public static void main(String[] args) {

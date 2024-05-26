@@ -3,6 +3,7 @@ package funksjonelleGrensesnittOrd2021;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class UniversityHandbook {
@@ -21,7 +22,8 @@ public class UniversityHandbook {
 	 * 
 	 * A given course can have anything from 0 to unlimited number of prerequisites.
 	 * The courses do not necessary come in order. Meaning that a course may appear
-	 * in the prerequisite list as a never before seen course. The method should read
+	 * in the prerequisite list as a never before seen course. The method should
+	 * read
 	 * in all courses, and set the courseName, averageGrade and prerequisites of all
 	 * courses and add the courses to the courses field of this class.
 	 * 
@@ -33,17 +35,35 @@ public class UniversityHandbook {
 	 * @param stream InputStream containing the course data
 	 */
 	public void readFromInputStream(InputStream stream) {
-		
+
 		try (Scanner scanner = new Scanner(stream)) {
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				String[] details = line.split(",");
-				
+
 				// TODO: implement remaining details
-				
+
+				String courceName = details[0];
+				double grade = Double.parseDouble(details[1]);
+
+				Optional<Course> courseopt = courses.stream().filter(e -> e.getCourseName().equals(courceName))
+						.findFirst();
+
+				Course course = courseopt.isPresent() ? courseopt.get() : new Course(courceName, grade);
+				for (int i = 2; i < details.length; i++) {
+					addNewPreReq(details[i], course);					
+				}
 			}
 		}
 
+	}
+
+	private void addNewPreReq(String name, Course course) {
+		Optional<Course> courseopt = courses.stream().filter(e -> e.getCourseName().equals(name))
+						.findFirst();
+		Course c = courseopt.orElse(new Course(name));
+		courses.add(c);
+		course.addPrequisite(c);
 	}
 
 	/**
@@ -58,7 +78,7 @@ public class UniversityHandbook {
 		return null;
 	}
 
-	public List<Course> getCourses(){
+	public List<Course> getCourses() {
 		return new ArrayList<>(courses);
 	}
 
@@ -70,53 +90,56 @@ public class UniversityHandbook {
 
 }
 
-
-
-//////////////////////////////////////////////// KOK /////////////////////////////////////////////////////////////
+//////////////////////////////////////////////// KOK
+//////////////////////////////////////////////// /////////////////////////////////////////////////////////////
 
 // public void readFromInputStream(InputStream stream) {
-// 	try (Scanner scanner = new Scanner(stream)) {
-// 		while (scanner.hasNextLine()) {
-// 			String line = scanner.nextLine();
-// 			String[] details = line.split(",");
-			
-// 			// Check if the class is already added if not create new, if it is added, add its avg grade
-// 			Optional<Course> c_opt = courses.stream().filter(c -> c.getCourseName().equals(details[0])).findFirst();
-			
-// 			Course course;
-// 			boolean add_flag = true;
-// 			if (!c_opt.isPresent()){
-// 				course = new Course(details[0], Double.parseDouble(details[1]));
-// 			} else {
-// 				// This c_opt has already been added and is thus missing its prereqs and average grade
-// 				course = c_opt.get();
-// 				course.setAverageGrade(Double.parseDouble(details[1]));
-// 				add_flag = false;
-// 			}
+// try (Scanner scanner = new Scanner(stream)) {
+// while (scanner.hasNextLine()) {
+// String line = scanner.nextLine();
+// String[] details = line.split(",");
 
-// 			// The prerequisites are still missing so we add these
-// 			for (int i = 2; i < details.length; i++) {
-// 				final int i_c = i;
-// 				Optional<Course> prereq = courses.stream().filter(c -> c.getCourseName().equals(details[i_c])).findFirst();
-				
-// 				Course tmp;
-// 				if (!prereq.isPresent()){
-// 					tmp = new Course(details[i]);
-// 					courses.add(tmp);
-// 				} else {
-// 					// This course has already been added in the past and can thus be used
-// 					tmp = prereq.get();
-// 				}
+// // Check if the class is already added if not create new, if it is added, add
+// its avg grade
+// Optional<Course> c_opt = courses.stream().filter(c ->
+// c.getCourseName().equals(details[0])).findFirst();
 
-// 				course.addPrequisite(tmp);
-// 			}
-			
-// 			if (add_flag)
-// 				courses.add(course);
-// 		}
-// 	}
+// Course course;
+// boolean add_flag = true;
+// if (!c_opt.isPresent()){
+// course = new Course(details[0], Double.parseDouble(details[1]));
+// } else {
+// // This c_opt has already been added and is thus missing its prereqs and
+// average grade
+// course = c_opt.get();
+// course.setAverageGrade(Double.parseDouble(details[1]));
+// add_flag = false;
+// }
 
-// 	System.out.println(courses);
-// 	courses.stream().forEach(c -> System.out.println(c.getPrerequisites()));
-// 	courses.stream().forEach(c -> System.out.println(c.getAverageGrade()));
+// // The prerequisites are still missing so we add these
+// for (int i = 2; i < details.length; i++) {
+// final int i_c = i;
+// Optional<Course> prereq = courses.stream().filter(c ->
+// c.getCourseName().equals(details[i_c])).findFirst();
+
+// Course tmp;
+// if (!prereq.isPresent()){
+// tmp = new Course(details[i]);
+// courses.add(tmp);
+// } else {
+// // This course has already been added in the past and can thus be used
+// tmp = prereq.get();
+// }
+
+// course.addPrequisite(tmp);
+// }
+
+// if (add_flag)
+// courses.add(course);
+// }
+// }
+
+// System.out.println(courses);
+// courses.stream().forEach(c -> System.out.println(c.getPrerequisites()));
+// courses.stream().forEach(c -> System.out.println(c.getAverageGrade()));
 // }
